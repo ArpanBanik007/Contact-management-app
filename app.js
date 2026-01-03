@@ -32,20 +32,14 @@ if (process.env.NODE_ENV === "production") {
 
   app.use(
     express.static(
-      path.join(__dirname, "Contact-Frontend", "dist")
+      path.join(__dirname, "Contact-Frontend/dist")
     )
   );
 
-  app.get("*", (req, res) => {
-    res.sendFile(
-      path.join(
-        __dirname,
-        "Contact-Frontend",
-        "dist",
-        "index.html"
-      )
-    );
-  });
+  
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(dirPath,'Contact-Frontend/dist','index.html'))
+  })
 }
 
 export default app
