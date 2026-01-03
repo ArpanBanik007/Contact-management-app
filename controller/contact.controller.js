@@ -48,6 +48,7 @@ const updateContactName = asyncHandler(async (req, res) => {
   const updatedContact = await contactModels.findOneAndUpdate(
     { phone: identifier }, // phone দিয়ে search
     { name },
+    
     { new: true, runValidators: true }
   );
 
