@@ -38,7 +38,7 @@ const createContact = asyncHandler(async (req, res) => {
 
 
 const updateContactName = asyncHandler(async (req, res) => {
-  const { phone } = req.params;
+  const { identifier } = req.params;
   const { name } = req.body;
 
   if (!name) {
@@ -46,7 +46,7 @@ const updateContactName = asyncHandler(async (req, res) => {
   }
 
   const updatedContact = await contactModels.findOneAndUpdate(
-    { phone },
+    { phone: identifier }, // phone দিয়ে search
     { name },
     { new: true, runValidators: true }
   );
@@ -55,11 +55,12 @@ const updateContactName = asyncHandler(async (req, res) => {
     throw new ApiError(404, "Contact not found");
   }
 
-  return res.status(200).json(
-    new ApiResponse(200, updatedContact, "Contact name updated successfully")
-  );
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, updatedContact, "Contact name updated successfully")
+    );
 });
-
 
 
 const deleteContact = asyncHandler(async (req, res) => {

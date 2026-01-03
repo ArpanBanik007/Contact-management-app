@@ -9,10 +9,10 @@ import {
 const router = Router();
 
 // Create a new contact
-router.route("/").post(createContact);
+router.route("/addContacts").post(createContact);
 
 // Get all contacts
-router.route("/all").get(getAllContacts);
+router.route("/getContacts").get(getAllContacts);
 
 // Update contact name by phone or email
 router.route("/:identifier").patch(updateContactName);
