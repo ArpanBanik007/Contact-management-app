@@ -18,15 +18,14 @@ import contactRoutes from "./router/contact.router.js";
 app.use("/api/v1/contact", contactRoutes);
 
 // Production frontend
+
 if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve();
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, "Contact-Frontend", "dist")));
 
-  app.use(express.static(path.join(__dirname, "Contact-Frontend", "dist")));
-
-  // Safe catch-all route
-  app.get(/.*/, (req, res) => {
-    res.sendFile(path.join(__dirname, "Contact-Frontend", "dist", "index.html"));
-  });
+    // Safe catch-all route
+    app.get(/.*/, (req, res) => {
+        res.sendFile(path.join(__dirname, "Contact-Frontend", "dist", "index.html"));
+    });
 }
-
 export default app;
