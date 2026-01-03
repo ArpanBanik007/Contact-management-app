@@ -31,6 +31,7 @@ app.use("/api/v1/contact", contactRoutes);
 
 
 
+
 if(process.env.NODE_ENV==="production"){
   const dirPath= path.resolve();
   app.use(express.static("Contact-Frontend/dist"))
